@@ -1,5 +1,7 @@
 import React from 'react';
 
+// {video}: the props object passed in from VideoList component has an object
+// called 'video', so pass that in so we don't have to call props.video.yadayada
 const VideoListItem = ({video}) => {
     const imgURL = video.snippet.thumbnails.default.url;
     return (

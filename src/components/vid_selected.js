@@ -1,6 +1,10 @@
 import React from 'react';
 
-const VideoDetail = ({video}) => {
+const VideoSelected = ({video}) => {
+    // We need to do this to make sure that we create lag time to give our
+    // App's state more time to store the videos from the AJAX call to YouTube
+    // It is a return statement, so none of the other stuff below this check
+    // will NOT run
     if (!video) {
         return <div>Loading...</div>
     }
@@ -12,7 +16,7 @@ const VideoDetail = ({video}) => {
     // - Note: we used the `(backticks) rather than '(single quote)
 
     return(
-        <div className="video-detail col-md-8">
+        <div className="video-selected col-md-8">
             <div className="embed-responsive embed-responsive-16by9">
                 <iframe className="embed-responsive-item" src={url}></iframe>
             </div>
@@ -25,4 +29,4 @@ const VideoDetail = ({video}) => {
     );
 };
 
-export default VideoDetail;
+export default VideoSelected;
