@@ -15,7 +15,18 @@ class App extends Component {
             selectedVideo: null
         }
 
-        YTSearch({key: API_KEY, term: 'puppies'}, (videos) => {
+        // Initial search
+        this.videoSearch('puppies');
+    }
+
+    videoSearch(term) {
+        // Extra logic to make sure all searches provide puppy videos from YouTube
+        if (term === "puppies") {
+            term = term;
+        } else {
+            term = term + "puppies";
+        }
+        YTSearch({key: API_KEY, term: term}, (videos) => {
             this.setState({
                 videos: videos,
                 selectedVideo: videos[0]
@@ -26,10 +37,10 @@ class App extends Component {
     render() {
         return (
             <div>
-                <SearchBar />
+                <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
                 <VideoSelected video={this.state.selectedVideo} />
                 <VideoList
-                onVideoSelect={(clickedVideo) => this.setState({selectedVideo: clickedVideo})}
+                onVideoSelect={clickedVideo => this.setState({selectedVideo: clickedVideo})}
                 videos={this.state.videos} />
             </div>
         );
